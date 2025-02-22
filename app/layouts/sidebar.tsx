@@ -46,10 +46,15 @@ export default function SidebarLayout({
           <Link to="about">React Router Contacts</Link>
         </h1>
         <div>
-          <Form id="search-form" role="search"
-                onChange={(event) =>
-                  submit(event.currentTarget)
-                }>
+          <Form id="search-form"
+            onChange={(event) => {
+              const isFirstSearch = q === null;
+              submit(event.currentTarget, {
+                replace: !isFirstSearch,
+              });
+            }}
+            role="search"
+            >
             <input
               aria-label="Search contacts"
               className={
